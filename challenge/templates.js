@@ -21,13 +21,17 @@ function home(posts) {
   return layout(title, content);
 }
 
+function sanitize(unsinitized){
+  return unsinitized.replace(/</g, "&lt;")
+}
+
 function postItem(post) {
   const date = new Date(post.created);
   const prettyDate = date.toLocaleString("en-GB");
   return `
     <li>
-      <p>${post.message}</p>
-      <p>—${post.nickname} | ${prettyDate}</p>
+      <p>${sanitize(post.message)}</p>
+      <p>—${sanitize(post.nickname)} | ${prettyDate}</p>
     </li>
   `;
 }
